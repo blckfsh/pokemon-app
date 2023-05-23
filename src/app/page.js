@@ -29,11 +29,11 @@ async function getPokemons() {
   `;
 
   const args = {
-    first: 10, // Replace with the desired number of pokemons
+    first: 8, // Replace with the desired number of pokemons
   };
 
   const data = await graphQLClient.request(query, args);
-  console.log(data.pokemons);
+  // console.log(data.pokemons);
   return data.pokemons;
 }
 
@@ -41,10 +41,16 @@ export default async function Home() {
   const pokemons = await getPokemons();
 
   return (
-    <div className="flex flex-row flex-wrap items-center justify-between">
-      {pokemons.map((pokemon) => {
+    <div className="flex lg:flex-row md:flex-row flex-col flex-wrap items-center justify-between">
+      {pokemons.map((pokemon, index) => {
+        const order1 = index + 1;
+        const order2 = index % 2 === 0 ? order1 + 1 : order1 - 1;
+
         return (
-          <div key={pokemon.id} className="basis-1/2 p-5 bg-green-200">
+          <div
+            key={pokemon.id}
+            className={`lg:order-${order1} order-${order2} basis-1/2 p-5 bg-green-200`}
+          >
             <div className="border border-current p-5 bg-red-200">
               <div className="flex flex-row w-full bg-yellow-200">
                 <div className="flex-1">
@@ -60,20 +66,23 @@ export default async function Home() {
                 <div className="flex-1">
                   <div className="h-full flex flex-col items-center justify-center bg-blue-100">
                     <div className="text-left">
-                    <p>{pokemon.number}</p>
-                    <p>{pokemon.name}</p>
-                    <p>Classification: {pokemon.classification}</p>
-                    <p>Types: {pokemon.types.join(", ")}</p>
-                    <p>
-                      Height: {pokemon.height.minimum} -{" "}
-                      {pokemon.height.maximum}
-                    </p>
-                    <p>
-                      Weight: {pokemon.weight.minimum} -{" "}
-                      {pokemon.weight.maximum}
-                    </p>
+                      <p>{index}</p>
+                      <p>
+                        {order1} {order2}
+                      </p>
+                      <p>{pokemon.number}</p>
+                      <p>{pokemon.name}</p>
+                      <p>Classification: {pokemon.classification}</p>
+                      <p>Types: {pokemon.types.join(", ")}</p>
+                      <p>
+                        Height: {pokemon.height.minimum} -{" "}
+                        {pokemon.height.maximum}
+                      </p>
+                      <p>
+                        Weight: {pokemon.weight.minimum} -{" "}
+                        {pokemon.weight.maximum}
+                      </p>
                     </div>
-                    
                   </div>
                 </div>
               </div>
