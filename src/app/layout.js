@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
             {children}
           </main>          
           <footer>
-            <div className="border border-current my-5 p-5">
+            <div className="border border-current my-5 mt-10 p-5">
               <h1 className="text-2xl font-bold">
                 Footer (Put anything you want in here)
               </h1>
