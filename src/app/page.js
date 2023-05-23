@@ -50,10 +50,10 @@ export default async function Home() {
           return (
             <div
               key={pokemon.id}
-              className={`div${order1} ${index % 2 === 0 ? "lg:pr-3" : "lg:pl-3"} basis-1/2 pt-6`}
+              className={`div${order1} ${index % 2 === 0 ? "lg:pr-3 p-1" : "lg:pl-3 p-1"} basis-1/2 pt-6`}
             >
               <div className="border border-current bg-white p-5">
-                <div className="flex flex-row w-full">
+                <div className="flex flex-row w-full justify-between items-center">
                   <div className="flex-1">
                     <Image
                       src={pokemon.image}
@@ -61,7 +61,7 @@ export default async function Home() {
                       height={200}
                       width={200}
                       quality={75}
-                      className="h-64 w-64"
+                      className="lg:h-64 lg:w-64 h-36 w-36"
                     />
                   </div>
                   <div className="flex-1">
